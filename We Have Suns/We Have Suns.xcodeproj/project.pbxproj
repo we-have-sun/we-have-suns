@@ -15,6 +15,9 @@
 		451FAA7C2B824AE000D9537E /* We_Have_SunsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451FAA7B2B824AE000D9537E /* We_Have_SunsTests.swift */; };
 		451FAA862B824AE000D9537E /* We_Have_SunsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451FAA852B824AE000D9537E /* We_Have_SunsUITests.swift */; };
 		451FAA882B824AE000D9537E /* We_Have_SunsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451FAA872B824AE000D9537E /* We_Have_SunsUITestsLaunchTests.swift */; };
+		451FAA952B8556A700D9537E /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451FAA942B8556A700D9537E /* TimerViewModel.swift */; };
+		451FAA972B8556BC00D9537E /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451FAA962B8556BC00D9537E /* TimerView.swift */; };
+		451FAA992B855B2D00D9537E /* PieSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451FAA982B855B2D00D9537E /* PieSlice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,9 @@
 		451FAA812B824AE000D9537E /* We Have SunsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "We Have SunsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		451FAA852B824AE000D9537E /* We_Have_SunsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = We_Have_SunsUITests.swift; sourceTree = "<group>"; };
 		451FAA872B824AE000D9537E /* We_Have_SunsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = We_Have_SunsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		451FAA942B8556A700D9537E /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		451FAA962B8556BC00D9537E /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		451FAA982B855B2D00D9537E /* PieSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieSlice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +106,9 @@
 			children = (
 				451FAA662B824ADE00D9537E /* We_Have_SunsApp.swift */,
 				451FAA682B824ADE00D9537E /* ContentView.swift */,
+				451FAA942B8556A700D9537E /* TimerViewModel.swift */,
+				451FAA962B8556BC00D9537E /* TimerView.swift */,
+				451FAA982B855B2D00D9537E /* PieSlice.swift */,
 				451FAA6A2B824ADE00D9537E /* Item.swift */,
 				451FAA6C2B824AE000D9537E /* Assets.xcassets */,
 				451FAA6E2B824AE000D9537E /* We_Have_Suns.entitlements */,
@@ -264,7 +273,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				451FAA972B8556BC00D9537E /* TimerView.swift in Sources */,
+				451FAA952B8556A700D9537E /* TimerViewModel.swift in Sources */,
 				451FAA692B824ADE00D9537E /* ContentView.swift in Sources */,
+				451FAA992B855B2D00D9537E /* PieSlice.swift in Sources */,
 				451FAA6B2B824ADE00D9537E /* Item.swift in Sources */,
 				451FAA672B824ADE00D9537E /* We_Have_SunsApp.swift in Sources */,
 			);

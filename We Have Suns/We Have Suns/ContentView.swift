@@ -8,59 +8,78 @@
 import SwiftUI
 import SwiftData
 
-struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
 
-    var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-#if os(macOS)
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-#endif
-            .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-#endif
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
-        }
-    }
+struct CircleItem: Identifiable {
+    let id = UUID()
+    let color: Color
 }
 
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+struct CircleGridView: View {
+    // Dynamic dataset of circle items
+    let items: [CircleItem] = [.init(color: .red), .init(color: .yellow), .init(color: .yellow), .init(color: .orange), .init(color: .red), .init(color: .red), .init(color: .yellow), .init(color: .yellow), .init(color: .orange), .init(color: .red), .init(color: .red), .init(color: .yellow), .init(color: .yellow), .init(color: .orange), .init(color: .red), .init(color: .red), .init(color: .yellow), .init(color: .yellow), .init(color: .orange), .init(color: .red), .init(color: .red), .init(color: .yellow), .init(color: .yellow), .init(color: .orange), .init(color: .red), .init(color: .red), .init(color: .yellow), .init(color: .yellow), .init(color: .orange), .init(color: .red), ].shuffled()
+    
+    // Define the grid layout
+    let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
+    
+    var body: some View {
+        NavigationView {
+            ScrollView {
+                VStack {
+                    // Play button
+                    NavigationLink(destination: TimerView()) {
+                        Image(systemName: "play.circle.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 100)
+                            .foregroundColor(.blue)
+                            .padding()
+                    }
+                    
+                    // Grid of circles
+                    LazyVGrid(columns: columns, spacing: 40) {
+                        ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
+                            ZStack {
+                                Circle()
+                                    .fill(
+                                        RadialGradient(
+                                            gradient: Gradient(colors: [item.color.opacity(0.3), item.color]),
+                                            center: .center,
+                                            startRadius: 0,
+                                            endRadius: 70
+                                        )
+                                    )
+                                    .frame(width: 70, height: 70) // Set the size of the circles
+                                    .shadow(color: item.color.opacity(0.9), radius: 15, x: 0, y: 0)
+
+                                Text("\(index + 1)") // Display 1-based index
+                                    .foregroundColor(self.textColor(for: item.color))
+                                    .font(.headline)
+                            }
+                        }
+                    }
+                    .padding()
+                }
+            }
+            .navigationTitle("Circle Grid")
+        }
+    }
+    
+    // Function to determine text color based on background color
+    private func textColor(for backgroundColor: Color) -> Color {
+        switch backgroundColor {
+        case .yellow:
+            return .black
+        case .orange:
+            return .white
+        default:
+            return .white // Default text color if not yellow or orange
+        }
+    }
+
+}
+
+struct ContentView: View {
+    var body: some View {
+        CircleGridView()
+    }
 }
